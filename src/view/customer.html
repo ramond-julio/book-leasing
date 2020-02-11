@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//get all customer from db
+				$.ajax({
+					url: 'http://localhost:8080/customer',
+					type: 'GET'
+				}).done(function(data){
+					var customerData = data;
+					var table = document.getElementById("tableCustomer");
+					
+					for(var i=0;i<data.length;i++){
+						var tableCust ="<tr><td>" +data[i].name+ 
+						"</td><td><a href=''>Update</a> | <a href=''>Delete</a></td></tr>";
+						var tableBody = document.getElementById('tableCustomer').getElementsByTagName('tbody');	
+						$("#getCustName").append(tableCust);
+					}
+				});
+				
+				//create customer & post to db
+				$("#customerForm").click(function(){
+					var formData = {
+							name : $("#customerName").val()
+					};
+					
+					$.ajax({
+						url: 'http://localhost:8080/customer',
+						type: 'POST',
+						data: formData
+					}).done(function(data){
+						console.log(data);
+					});
+				});
+			});
+		</script>
+		<title>Customer Page</title>
+	</head>
+	
+	<body>
+		<h2>Customer Table</h2>
+		<table border="1" id="tableCustomer">
+			<thead>
+				<tr>
+					<th>Customer Name</th>
+					<th>Action</th>
+				</tr>	
+			</thead>
+			<tbody id="getCustName">
+			</tbody>
+		</table>
+		
+		<div>
+			<h2>Customer Form</h2>
+			<form action="" method="POST">
+				<p>Customer Name:</p>
+				<input type="text" name="customerName" required id="customerName">
+				<p>
+					<input type="button" value="Submit" id="customerForm">
+				</p>
+			</form>
+		</div>
+	</body>
+	
+</html>

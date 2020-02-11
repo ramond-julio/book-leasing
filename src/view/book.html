@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("button").click(function(){
+				alert("Button has been clicked");
+			});
+			
+		});
+		</script>
+		<title>Book Page</title>
+	</head>
+	
+	<body>
+		<h2>Book Table</h2>
+		
+		<button>Add Book</button>
+		
+		<br><br>
+		
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Book Name</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+		</table>
+		
+		<div>
+			<h2>Book Form</h2>
+			<form id="bookForm" >
+				<p>Book Name:</p>
+				<input type="text" name="bookName">
+				<p>Quantity:</p>
+				<input type="text" name="quantity">
+				<p>
+					<input type="button" value="Submit" id="submit-form">
+				</p>
+			</form>
+		</div>
+	</body>
+</html>
